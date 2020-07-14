@@ -1,0 +1,89 @@
+#home {
+  position: relative;
+  background-color: $gop_red;
+  background-image: linear-gradient(135deg, $gop_red,$dems_blue);
+  overflow: hidden;
+
+  section {
+    padding: 1em 2em;
+    max-width: $size-large;
+    margin: auto;
+
+    h1,h2,h3,h4,p {
+      margin-top: 0;
+    }
+  }
+  #intro {
+
+  }
+  .question {
+    position: relative;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+    @include transform(translateX(-100%));
+    @include transition(transform);
+    &.active {
+      @include transform(translateX(0%));
+      height: auto;
+      opacity: 1;
+      padding: 1em 2em;
+    }
+    .option-list {
+      margin: 0;
+      padding: 0;
+      .option {
+        list-style: none;
+        vertical-align: middle;
+        .checkbox {
+          height: 1.5em;
+          width: 1.5em;
+          border-radius: 50%;
+          display: inline-block;
+          background-color: $white;
+          position: relative;
+          &:before {
+            content: '';
+            position: absolute;
+            width: 0.5em;
+            height: 2px;
+            background-color: green;
+            left: 6px;
+            bottom: 10px;
+            @include transform(translateZ(0) scale(0) rotate(45deg));
+            transform-origin: top left;
+            @include transition(transform);
+            z-index: 2;
+          }
+          &:after {
+            content: '';
+            width: 2px;
+            height: 1em;
+            position: absolute;
+            right: 16px;
+            bottom: 6px;
+            background-color: green;
+            @include transform(translateZ(0) scale(0) rotate(45deg));
+            transform-origin: bottom left;
+            @include transition(transform);
+            transition-delay: 0.2s;
+          }
+        }
+        &.active {
+          .checkbox {
+            &:before {
+              @include transform(translateZ(0) scale(1) rotate(45deg));
+            }
+            &:after {
+              @include transform(translateZ(0) scale(1) rotate(45deg));
+            }
+          }
+        }
+      }
+    }
+  }
+  #result {
+    display: none;
+  }
+}

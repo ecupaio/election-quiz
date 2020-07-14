@@ -1,0 +1,64 @@
+---
+title: Home Page
+layout: default
+intro: |-
+  The 2020 general election will be here before you know it. With a crowded democratic primary an endless deluge of policy proposals, and President Trump making daily headlines, it’s difficult to decide who you should support for President of the US, be they democrat or republican.
+
+  This questionnaire was designed with you, the voter in mind. We take into consideration what matters to you and find you the best possible candidate.
+
+  Select the statement that best matches with your beliefs on the given topics and we’ll find who you will represent your voice best in 2020.
+questions:
+- title: healthcare
+  options:
+    - mfa
+    - keep the aca
+    - no aca, free market
+- title: criminal justice
+  options:
+    - abolish prison
+    - decriminalize drugs
+    - back the blue
+- title: foreign policy
+  options:
+    - diplomacy
+    - drones
+    - bomb iran
+- title: economy
+  options:
+    - fight for $15
+    - moderate
+    - no taxes
+result: |-
+  Were you gonna vote for Trump?  Every time he goes to North Korea, they do a missile launch test because they see how incompetent he is. Most of Trump’s cabinet has resigned either in disgrace, fear of being charged for corruption, or just out of frustration at how bad he is at being president.
+
+  If your preferred candidate didn’t make it past Iowa or if you’re a straight-ticket Republican voter, it doesn’t matter. You’re just gonna have to hold your nose and vote for Democrat for the sake of the country.
+
+  While you’re here, make sure you’re registered to vote and make sure you know what you need at your polling location on election day (driver’s license, voter reg card, etc).
+---
+<main id="home">
+  <section id="intro">
+    <h1>My Choice 2020</h1>
+    {{ page.intro | markdownify }}
+  </section>
+  {% for question in page.questions %}
+
+  <section class="question {% if forloop.index == 1  %}active{% endif %}" data-question="{{ forloop.index }}">
+    <h2>{{ question.title }}</h2>
+    <ul class="option-list">
+      {% for option in question.options %}
+      <li class="option">
+        <span class="checkbox"></span> {{ option }}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+  <section id="result">
+    <p>
+    Based on you input, you should vote for….
+    </p>
+    <h2>Whatever democrat limps out of the primary.</h2>
+    {{ page.result }}
+    <a href="/" class='btn'>Check my registration</a>
+  </section>
+</main>
